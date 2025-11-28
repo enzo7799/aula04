@@ -11,28 +11,29 @@ async function consultaCEP(cep) {
   const url = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
   const resposta = await url.json();
 
-  let cepUsuario = {
-    logradouro: resposta.logradouro,
+  const dadosCep = {
+    rua: resposta.rua,
     bairro: resposta.bairro,
     localidade: resposta.localidade,
     estado: resposta.estado,
     regiao: resposta.regiao,
 
-  };
+  }
 
-  enderecoUsuario.rua.innerText = cepUsuario.logradouro;
-  enderecoUsuario.bairro.innerText = cepUsuario.bairro;
-  enderecoUsuario.localidade.innerText = cepUsuario.localidade;
-  enderecoUsuario.estado.innerText = cepUsuario.estado;
-  enderecoUsuario.regiao.innerText = cepUsuario.regiao;
-  console, log(cepUsuario);
+ inserirEndereco(dadosCep)
+  
 
   // //   return  resposta
 }
 
-consultaCEP(enderecoUsuario.cep);
+consultaCEP(enderecoUsuario.cep)
 
-const objetoTeste = {
-  nome: "",
-};
-console.log(typeof objetoTeste);
+  function inserirEndereco(dadosCep) {
+    enderecoUsuario.rua.innerText = dadosCep.rua;
+    enderecoUsuario.bairro.innerText = dadosCep.bairro;
+    enderecoUsuario.localidade.innerText = dadosCep.localidade;
+    enderecoUsuario.estado.innerText = dadosCep.estado;
+    enderecoUsuario.regiao.innerText = dadosCep.regiao;
+    
+}
+
